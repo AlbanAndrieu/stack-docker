@@ -46,6 +46,25 @@ First we need to:
 2. create keystores to store passwords
 3. install dashboards, index patterns, etc.. for beats and apm
 
+
+If you wish to remove the setup containers please run:
+```
+docker-compose -f docker-compose.yml -f docker-compose.setup.yml down --remove-orphans
+```
+
+```
+export ELASTIC_PASSWORD=elastic
+docker system prune -a --volumes
+```
+
+Disable ssl in config/elasticsearch/elasticsearch.yml
+
+```
+xpack.security.enabled: false
+xpack.security.http.ssl.enabled: false
+xpack.security.transport.ssl.enabled: false
+```
+
 This is accomplished using the setup.yml file:
 ```
 docker-compose -f setup.yml up
@@ -63,3 +82,5 @@ Point a browser at [`http://localhost:5601`](http://localhost:5601) to see the r
 
 Log in with `elastic` and what ever your auto generated elastic password is from the
 setup.
+
+Elastic password is: elastic
